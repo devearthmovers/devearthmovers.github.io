@@ -1,10 +1,14 @@
 name: Build and deploy to GitHub Pages
 
+# Run on push to main branch (change 'main' if your default branch is different)
 on:
   push:
     branches:
-      - main   # run on pushes to main (change if your default branch is different)
+      - main
   workflow_dispatch:
+
+permissions:
+  contents: write    # allow the workflow to push to gh-pages using GITHUB_TOKEN
 
 jobs:
   build-and-deploy:
@@ -13,12 +17,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          persist-credentials: false  # recommended for deploy actions
+          fetch-depth: 0
+          persist-credentials: true   # <<< must be true so the action can push
 
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'   # change if you need different node
+          node-version: '20'
           cache: 'npm'
 
       - name: Install dependencies
@@ -27,10 +32,15 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Configure git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
       - name: Deploy to GitHub Pages (gh-pages branch)
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages           # the branch the action will push to
-          folder: dist               # folder to deploy (Vite output)
+          branch: gh-pages
+          folder: dist
           clean: true
           token: ${{ secrets.GITHUB_TOKEN }}
