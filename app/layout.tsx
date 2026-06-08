@@ -1,5 +1,8 @@
 // GitHub Pages clean URL configuration updated
 import type { Metadata } from "next";
+import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Dev Earth Movers",
@@ -20,12 +23,15 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
+      className="overflow-x-hidden"
     >
       <body
-        className="min-h-full flex flex-col"
+        className="min-h-screen flex flex-col font-sans bg-white text-zinc-900 w-full max-w-[100vw] overflow-x-hidden"
         suppressHydrationWarning
       >
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
