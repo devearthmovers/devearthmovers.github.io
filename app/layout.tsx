@@ -1,4 +1,4 @@
-// GitHub Pages configuration updated
+// GitHub Pages clean URL configuration updated
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
