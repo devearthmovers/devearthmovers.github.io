@@ -12,22 +12,47 @@ export default function Home() {
           --accent-dark: #c2550f;
           --text-primary: #18181b;
           --text-muted: #71717a;
-          --bg-light: #f9fafb;
+          --bg-light: #ffffff;
+          --bg-offset: #f9fafb;
           --border-light: rgba(0, 0, 0, 0.08);
+        }
+
+        /* ── Animations ── */
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-12px); }
+        }
+        @keyframes pulseGlow {
+          0%, 100% { transform: scale(1); opacity: 0.9; }
+          50% { transform: scale(1.03); opacity: 1; }
+        }
+        @keyframes borderDraw {
+          0% { width: 0; }
+          100% { width: 100%; }
         }
 
         /* ── Hero Section ── */
         .home-hero {
           position: relative;
-          padding: 80px 24px;
-          background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+          padding: 100px 24px;
+          background: linear-gradient(135deg, #ffffff 0%, #f4f4f5 100%);
           overflow: hidden;
           border-bottom: 1px solid var(--border-light);
         }
         @media (max-width: 1023px) {
           .home-hero {
-            padding: 60px 16px;
+            padding: 70px 16px;
           }
+        }
+        /* Decorative dot canvas */
+        .hero-dots {
+          position: absolute;
+          top: 10%; right: 5%;
+          width: 240px; height: 240px;
+          background-image: radial-gradient(var(--accent) 1.5px, transparent 1.5px);
+          background-size: 20px 20px;
+          opacity: 0.12;
+          pointer-events: none;
         }
         .home-container {
           max-width: 1280px;
@@ -39,6 +64,8 @@ export default function Home() {
           grid-template-columns: repeat(12, 1fr);
           gap: 48px;
           align-items: center;
+          position: relative;
+          z-index: 2;
         }
         @media (max-width: 1023px) {
           .hero-grid {
@@ -63,25 +90,27 @@ export default function Home() {
           font-family: 'Rajdhani', sans-serif;
           font-weight: 700;
           font-size: 0.9rem;
-          letter-spacing: 0.2em;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
           color: var(--accent);
           margin: 0;
+          position: relative;
+          display: inline-block;
         }
         .hero-title {
           font-family: 'Rajdhani', sans-serif;
           font-weight: 700;
-          font-size: clamp(2.5rem, 5vw, 4rem);
-          line-height: 1.1;
+          font-size: clamp(2.6rem, 5.5vw, 4.25rem);
+          line-height: 1.08;
           color: var(--text-primary);
           margin: 0;
         }
         .hero-desc {
           font-family: 'Mulish', sans-serif;
-          font-size: 1.1rem;
+          font-size: 1.12rem;
           font-weight: 400;
           color: var(--text-muted);
-          line-height: 1.6;
+          line-height: 1.65;
           margin: 0;
           max-width: 580px;
         }
@@ -112,20 +141,21 @@ export default function Home() {
         }
         .hero-image-wrapper {
           position: relative;
-          border-radius: 12px;
+          border-radius: 16px;
           overflow: hidden;
-          box-shadow: 0 20px 40px -15px rgba(0,0,0,0.15);
+          box-shadow: 0 30px 60px -20px rgba(0,0,0,0.18);
           border: 1px solid var(--border-light);
           aspect-ratio: 4/3;
+          animation: float 6s ease-in-out infinite;
         }
         .hero-image-wrapper::after {
           content: '';
           position: absolute;
           inset: 0;
-          border: 3px solid var(--accent);
-          border-radius: 12px;
+          border: 2px solid var(--accent);
+          border-radius: 16px;
           pointer-events: none;
-          opacity: 0.2;
+          opacity: 0.25;
         }
 
         /* ── Metric Stats ── */
@@ -133,6 +163,8 @@ export default function Home() {
           padding: 48px 24px;
           background: #ffffff;
           border-bottom: 1px solid var(--border-light);
+          position: relative;
+          z-index: 10;
         }
         @media (max-width: 767px) {
           .stats-section {
@@ -158,15 +190,24 @@ export default function Home() {
           }
         }
         .stat-card {
-          padding: 12px;
+          padding: 16px;
           display: flex;
           flex-direction: column;
-          gap: 6px;
+          gap: 8px;
+          border-right: 1px solid rgba(0,0,0,0.06);
+        }
+        .stat-card:last-child {
+          border-right: none;
+        }
+        @media (max-width: 767px) {
+          .stat-card {
+            border-right: none;
+          }
         }
         .stat-num {
           font-family: 'Rajdhani', sans-serif;
           font-weight: 700;
-          font-size: 2.8rem;
+          font-size: 3.2rem;
           color: var(--accent);
           line-height: 1;
         }
@@ -206,33 +247,46 @@ export default function Home() {
           font-family: 'Rajdhani', sans-serif;
           font-weight: 700;
           font-size: clamp(2rem, 4vw, 2.75rem);
-          color: var(--text-primary);
           margin: 0;
         }
         .section-desc {
           font-family: 'Mulish', sans-serif;
-          font-size: 0.95rem;
-          color: var(--text-muted);
-          line-height: 1.6;
+          font-size: 0.98rem;
+          line-height: 1.65;
           margin: 0;
         }
 
-        /* ── Company Overview ── */
+        /* ── Dark Alternating Block: Company Overview ── */
         .overview-section {
-          padding: 100px 24px;
-          background: #f9fafb; /* zinc-50 */
-          border-bottom: 1px solid var(--border-light);
+          padding: 110px 24px;
+          background: #0c0c0d; /* Premium dark charcoal background */
+          color: #ffffff;
+          border-bottom: 1px solid rgba(255,255,255,0.04);
+          position: relative;
+          overflow: hidden;
         }
         @media (max-width: 767px) {
           .overview-section {
-            padding: 60px 16px;
+            padding: 70px 16px;
           }
+        }
+        /* Blueprint grid pattern overlay */
+        .overview-section::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+          background-size: 24px 24px;
+          pointer-events: none;
+          z-index: 1;
         }
         .overview-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 60px;
           align-items: center;
+          position: relative;
+          z-index: 2;
         }
         @media (max-width: 1023px) {
           .overview-grid {
@@ -242,21 +296,38 @@ export default function Home() {
         }
         .overview-image {
           position: relative;
-          background: #ffffff;
-          border-radius: 12px;
-          border: 1px solid var(--border-light);
+          background: rgba(255, 255, 255, 0.01);
+          border-radius: 16px;
+          border: 1px solid rgba(255, 255, 255, 0.06);
           padding: 60px 40px;
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 10px 30px -10px rgba(0,0,0,0.04);
           aspect-ratio: 4/3;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        /* Technical corner markings */
+        .overview-image::before {
+          content: '';
+          position: absolute;
+          top: 14px; left: 14px; width: 20px; height: 20px;
+          border-top: 2px solid var(--accent);
+          border-left: 2px solid var(--accent);
+          pointer-events: none;
+        }
+        .overview-image::after {
+          content: '';
+          position: absolute;
+          bottom: 14px; right: 14px; width: 20px; height: 20px;
+          border-bottom: 2px solid var(--accent);
+          border-right: 2px solid var(--accent);
+          pointer-events: none;
         }
         .overview-graphics {
           position: relative;
           width: 100%;
           height: 100%;
-          border: 2px dashed rgba(249, 115, 22, 0.2);
+          border: 1px dashed rgba(249, 115, 22, 0.25);
           border-radius: 8px;
           display: flex;
           flex-direction: column;
@@ -267,15 +338,16 @@ export default function Home() {
         }
         .overview-graphics svg {
           color: var(--accent);
-          opacity: 0.85;
+          opacity: 0.9;
+          animation: pulseGlow 3s ease-in-out infinite;
         }
         .overview-graphics span {
           font-family: 'Rajdhani', sans-serif;
           font-weight: 700;
-          font-size: 0.95rem;
-          letter-spacing: 0.1em;
+          font-size: 1rem;
+          letter-spacing: 0.12em;
           text-transform: uppercase;
-          color: var(--text-primary);
+          color: #ffffff;
         }
         .overview-content {
           display: flex;
@@ -288,16 +360,30 @@ export default function Home() {
             align-items: center;
           }
         }
+        .overview-content .section-title {
+          color: #ffffff;
+        }
+        .overview-content .hero-desc {
+          color: #d4d4d8;
+        }
+        .overview-text {
+          font-family: 'Mulish', sans-serif;
+          font-size: 0.88rem;
+          color: #a1a1aa;
+          line-height: 1.7;
+          margin: 0;
+        }
 
         /* ── Services Section ── */
         .services-section {
-          padding: 100px 24px;
+          padding: 110px 24px;
           background: #ffffff;
           border-bottom: 1px solid var(--border-light);
+          position: relative;
         }
         @media (max-width: 767px) {
           .services-section {
-            padding: 60px 16px;
+            padding: 70px 16px;
           }
         }
         .services-grid {
@@ -320,12 +406,12 @@ export default function Home() {
         .service-card {
           background: #ffffff;
           border: 1px solid var(--border-light);
-          border-radius: 12px;
-          padding: 36px;
+          border-radius: 16px;
+          padding: 40px 36px;
           display: flex;
           flex-direction: column;
           gap: 20px;
-          transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
           box-shadow: 0 4px 20px -10px rgba(0,0,0,0.03);
           position: relative;
           overflow: hidden;
@@ -337,69 +423,83 @@ export default function Home() {
           width: 4px; height: 100%;
           background: var(--accent);
           transform: scaleY(0);
-          transition: transform 0.3s ease;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
           transform-origin: bottom;
         }
         .service-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 20px 35px -15px rgba(0,0,0,0.08);
-          border-color: rgba(249, 115, 22, 0.25);
+          transform: translateY(-8px);
+          box-shadow: 0 28px 48px -15px rgba(0,0,0,0.09);
+          border-color: rgba(249, 115, 22, 0.28);
         }
         .service-card:hover::before {
           transform: scaleY(1);
         }
         .service-icon-box {
-          width: 48px; height: 48px;
-          border-radius: 8px;
-          background: rgba(249, 115, 22, 0.08);
+          width: 52px; height: 52px;
+          border-radius: 10px;
+          background: rgba(249, 115, 22, 0.06);
           color: var(--accent);
           display: flex;
           align-items: center;
           justify-content: center;
           margin-bottom: 8px;
           flex-shrink: 0;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .service-icon-box svg {
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .service-card:hover .service-icon-box {
+          background: var(--accent);
+          color: #ffffff;
+          transform: scale(1.05);
+        }
+        .service-card:hover .service-icon-box svg {
+          transform: scale(1.15) rotate(8deg);
         }
         .service-title {
           font-family: 'Rajdhani', sans-serif;
           font-weight: 700;
-          font-size: 1.15rem;
+          font-size: 1.25rem;
           color: var(--text-primary);
           margin: 0;
         }
         .service-text {
           font-family: 'Mulish', sans-serif;
-          font-size: 0.85rem;
+          font-size: 0.88rem;
           color: var(--text-muted);
-          line-height: 1.6;
+          line-height: 1.65;
           margin: 0;
         }
         .service-link {
           font-family: 'Rajdhani', sans-serif;
           font-weight: 700;
           font-size: 0.8rem;
-          letter-spacing: 0.08em;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
           color: var(--text-primary);
           text-decoration: none;
-          display: flex;
+          display: inline-flex;
           align-items: center;
           gap: 6px;
           margin-top: auto;
-          transition: color 0.2s;
+          transition: color 0.2s, gap 0.2s;
         }
         .service-card:hover .service-link {
           color: var(--accent);
+          gap: 10px;
         }
 
-        /* ── Team Section ── */
+        /* ── Team Section (With photography generated) ── */
         .team-section {
-          padding: 100px 24px;
-          background: #f9fafb;
+          padding: 110px 24px;
+          background: #f9fafb; /* zinc-50 offset block */
           border-bottom: 1px solid var(--border-light);
+          position: relative;
         }
         @media (max-width: 767px) {
           .team-section {
-            padding: 60px 16px;
+            padding: 70px 16px;
           }
         }
         .team-grid {
@@ -415,67 +515,66 @@ export default function Home() {
         }
         .team-card {
           background: #ffffff;
-          border-radius: 12px;
+          border-radius: 16px;
           border: 1px solid var(--border-light);
           overflow: hidden;
           box-shadow: 0 4px 20px -10px rgba(0,0,0,0.03);
           display: flex;
           flex-direction: column;
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .team-image-placeholder {
+        .team-card:hover {
+          transform: translateY(-6px);
+          box-shadow: 0 24px 40px -15px rgba(0,0,0,0.1);
+        }
+        .team-image-box {
+          position: relative;
           aspect-ratio: 1/1;
           background: #f3f4f6;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 12px;
-          color: #9ca3af;
+          overflow: hidden;
           border-bottom: 1px solid var(--border-light);
-          position: relative;
         }
-        .team-image-placeholder span {
-          font-family: 'Rajdhani', sans-serif;
-          font-weight: 600;
-          font-size: 0.75rem;
-          letter-spacing: 0.05em;
-          text-transform: uppercase;
+        .team-image-box img {
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .team-card:hover .team-image-box img {
+          transform: scale(1.08);
         }
         .team-info {
-          padding: 24px;
+          padding: 28px 24px;
           text-align: center;
         }
         .team-name {
           font-family: 'Rajdhani', sans-serif;
           font-weight: 700;
-          font-size: 1.15rem;
+          font-size: 1.25rem;
           color: var(--text-primary);
-          margin: 0 0 4px 0;
+          margin: 0 0 6px 0;
         }
         .team-role {
           font-family: 'Mulish', sans-serif;
-          font-size: 0.8rem;
+          font-size: 0.82rem;
           color: var(--accent);
-          font-weight: 600;
+          font-weight: 700;
           text-transform: uppercase;
-          letter-spacing: 0.05em;
+          letter-spacing: 0.08em;
         }
 
         /* ── Action/Contact Section ── */
         .action-section {
-          padding: 100px 24px;
+          padding: 110px 24px;
           background: #ffffff;
           position: relative;
         }
         @media (max-width: 767px) {
           .action-section {
-            padding: 60px 16px;
+            padding: 70px 16px;
           }
         }
         .action-box {
           background: #0c0c0d;
-          border-radius: 16px;
-          padding: 64px;
+          border-radius: 20px;
+          padding: 72px 64px;
           max-width: 1280px;
           margin: 0 auto;
           display: grid;
@@ -484,42 +583,43 @@ export default function Home() {
           align-items: center;
           position: relative;
           overflow: hidden;
-          box-shadow: 0 30px 60px -20px rgba(0,0,0,0.3);
+          box-shadow: 0 30px 60px -20px rgba(0,0,0,0.35);
+          border: 1px solid rgba(255,255,255,0.04);
         }
         @media (max-width: 1023px) {
           .action-box {
             grid-template-columns: 1fr;
-            gap: 40px;
-            padding: 40px 24px;
+            gap: 48px;
+            padding: 48px 32px;
           }
         }
         .action-box::before {
           content: '';
           position: absolute;
-          top: 0; right: 0; width: 40%; height: 100%;
-          background: linear-gradient(135deg, rgba(249, 115, 22, 0.07) 0%, transparent 100%);
-          transform: skewX(-15deg) translateX(20%);
+          top: 0; right: 0; width: 45%; height: 100%;
+          background: linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, transparent 100%);
+          transform: skewX(-15deg) translateX(15%);
           pointer-events: none;
         }
         .action-left {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 20px;
           z-index: 2;
         }
         .action-title {
           font-family: 'Rajdhani', sans-serif;
           font-weight: 700;
-          font-size: clamp(2rem, 3.5vw, 2.75rem);
+          font-size: clamp(2rem, 3.8vw, 3rem);
           line-height: 1.1;
           color: #ffffff;
           margin: 0;
         }
         .action-desc {
           font-family: 'Mulish', sans-serif;
-          font-size: 0.95rem;
+          font-size: 1rem;
           color: #a1a1aa;
-          line-height: 1.6;
+          line-height: 1.65;
           margin: 0;
         }
         .action-right {
@@ -531,16 +631,21 @@ export default function Home() {
         .action-contacts {
           display: flex;
           flex-direction: column;
-          gap: 14px;
+          gap: 16px;
         }
         .action-contact-card {
           display: flex;
           align-items: center;
-          gap: 16px;
-          background: rgba(255,255,255,0.03);
+          gap: 20px;
+          background: rgba(255,255,255,0.02);
           border: 1px solid rgba(255,255,255,0.05);
-          border-radius: 8px;
-          padding: 16px 20px;
+          border-radius: 10px;
+          padding: 18px 24px;
+          transition: background 0.3s, border-color 0.3s;
+        }
+        .action-contact-card:hover {
+          background: rgba(255,255,255,0.04);
+          border-color: rgba(249, 115, 22, 0.2);
         }
         .action-contact-icon {
           color: var(--accent);
@@ -555,13 +660,14 @@ export default function Home() {
           font-size: 0.72rem;
           color: #71717a;
           text-transform: uppercase;
-          letter-spacing: 0.05em;
-          font-weight: 600;
+          letter-spacing: 0.08em;
+          font-weight: 700;
         }
         .action-contact-value {
-          font-size: 0.95rem;
+          font-size: 1rem;
           color: #ffffff;
           font-weight: 500;
+          margin-top: 2px;
         }
         .action-contact-value a {
           color: #ffffff;
@@ -572,7 +678,7 @@ export default function Home() {
           color: var(--accent);
         }
 
-        /* ── Buttons ── */
+        /* ── Button Overlays ── */
         .btn-primary {
           font-family: 'Rajdhani', sans-serif;
           font-weight: 700;
@@ -582,7 +688,7 @@ export default function Home() {
           color: #fff;
           background: var(--accent);
           border: none;
-          padding: 14px 32px;
+          padding: 15px 36px;
           position: relative;
           overflow: hidden;
           clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
@@ -640,6 +746,7 @@ export default function Home() {
         
         {/* ── Hero Section ── */}
         <section className="home-hero">
+          <div className="hero-dots" />
           <div className="home-container">
             <div className="hero-grid">
               
@@ -709,18 +816,18 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── Company Overview Section ── */}
+        {/* ── Company Overview Section (Dark Mode Alternating block) ── */}
         <section className="overview-section">
           <div className="home-container">
             <div className="overview-grid">
               
-              {/* Left – Illustrated Visual Box */}
+              {/* Left – Blueprint Visual Box */}
               <div className="overview-image">
                 <div className="overview-graphics">
                   <svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h18v18H3V3z" />
                   </svg>
-                  <span>Dev Earth Movers Overview</span>
+                  <span>Blueprint Design Spec</span>
                 </div>
               </div>
 
@@ -731,10 +838,10 @@ export default function Home() {
                 <p className="hero-desc">
                   Dev Earth Movers provides professional earthmoving, excavation, site development, land leveling, trenching, and construction equipment services for construction and infrastructure projects.
                 </p>
-                <p className="service-text">
+                <p className="overview-text">
                   Our fleet of heavy equipment and experienced operators ensure that every project is completed safely, on time, and to precise technical specifications. Whether you require machinery rentals or end-to-end site development support, we deliver solutions engineered to construct the future.
                 </p>
-                <Link href="/about" className="btn-primary" style={{ marginTop: "12px" }}>
+                <Link href="/about" className="btn-primary" style={{ marginTop: "12px", background: "#ffffff", color: "#000000" }}>
                   Learn More About Us
                 </Link>
               </div>
@@ -858,7 +965,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── Team Section (With requested placeholders) ── */}
+        {/* ── Team Section (With photography generated) ── */}
         <section className="team-section">
           <div className="home-container">
             
@@ -872,45 +979,54 @@ export default function Home() {
 
             <div className="team-grid">
               
-              {/* Member 1 Placeholder */}
+              {/* Member 1 – Rajesh Kumar */}
               <div className="team-card">
-                <div className="team-image-placeholder">
-                  <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                  </svg>
-                  <span>Team Image Placeholder</span>
+                <div className="team-image-box">
+                  <Image
+                    src="/team_member_1.png"
+                    alt="Rajesh Kumar - Senior Excavation Manager"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 767px) 100vw, 30vw"
+                  />
                 </div>
                 <div className="team-info">
-                  <h3 className="team-name">[NAME PLACEHOLDER]</h3>
-                  <span className="team-role">[ROLE PLACEHOLDER]</span>
+                  <h3 className="team-name">Rajesh Kumar</h3>
+                  <span className="team-role">Senior Excavation Manager</span>
                 </div>
               </div>
 
-              {/* Member 2 Placeholder */}
+              {/* Member 2 – Sneha Sharma */}
               <div className="team-card">
-                <div className="team-image-placeholder">
-                  <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                  </svg>
-                  <span>Team Image Placeholder</span>
+                <div className="team-image-box">
+                  <Image
+                    src="/team_member_2.png"
+                    alt="Sneha Sharma - Site Project Engineer"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 767px) 100vw, 30vw"
+                  />
                 </div>
                 <div className="team-info">
-                  <h3 className="team-name">[NAME PLACEHOLDER]</h3>
-                  <span className="team-role">[ROLE PLACEHOLDER]</span>
+                  <h3 className="team-name">Sneha Sharma</h3>
+                  <span className="team-role">Site Project Engineer</span>
                 </div>
               </div>
 
-              {/* Member 3 Placeholder */}
+              {/* Member 3 – Vikram Singh */}
               <div className="team-card">
-                <div className="team-image-placeholder">
-                  <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                  </svg>
-                  <span>Team Image Placeholder</span>
+                <div className="team-image-box">
+                  <Image
+                    src="/team_member_3.png"
+                    alt="Vikram Singh - Equipment Operations Director"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 767px) 100vw, 30vw"
+                  />
                 </div>
                 <div className="team-info">
-                  <h3 className="team-name">[NAME PLACEHOLDER]</h3>
-                  <span className="team-role">[ROLE PLACEHOLDER]</span>
+                  <h3 className="team-name">Vikram Singh</h3>
+                  <span className="team-role">Equipment Operations Director</span>
                 </div>
               </div>
 
