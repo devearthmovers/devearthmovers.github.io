@@ -45,6 +45,7 @@ export default function Home() {
     { img: "/service_trenching.png",  n: "04", title: "Trenching & Backfill",desc: "Deep utility trenching, pipe-laying, and compacted backfill done precisely." },
     { img: "/service_road.png",       n: "05", title: "Road Construction",   desc: "Sub-base prep, aggregate spreading, and precision grading for commercial roadways." },
     { img: "/service_equipment.png",  n: "06", title: "Equipment Logistics", desc: "Transport, operators, safety checks, and full support for every machine on site." },
+    { img: "/service_demolition.png", n: "07", title: "Building Demolition", desc: "Safe, controlled structural demolition with complete site clearance and debris removal." },
   ];
 
   const pillars = [
