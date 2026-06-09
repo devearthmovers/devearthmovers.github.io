@@ -49,6 +49,7 @@ export default function Home() {
     { img: "/service_piling.png",     n: "08", title: "Piling Services",     desc: "Heavy-duty foundation piling, sheet piling, and structural support for deep foundations." },
     { img: "/service_barricading.png",n: "09", title: "Barricading Work",    desc: "Secure, heavy metal barricading and site fencing for active construction safety." },
     { img: "/service_dewatering.png", n: "10", title: "Dewatering Services", desc: "High-capacity pumping and trench water management for dry, safe excavation sites." },
+    { img: "/service_civil.png", n: "11", title: "Construction & Civil Engineering", desc: "End-to-end structural construction, concrete work, and comprehensive civil engineering solutions." },
   ];
 
   const pillars = [
