@@ -23,7 +23,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className="overflow-x-clip"
+      className="overflow-x-clip overflow-y-scroll"
     >
       <body
         className="min-h-screen flex flex-col font-sans bg-white text-zinc-900 w-full max-w-[100vw] overflow-x-clip"
