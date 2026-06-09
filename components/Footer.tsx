@@ -166,7 +166,7 @@ export default function Footer() {
             <div className="ftr-col">
               <Link href="/" className="inline-block bg-white p-2.5 rounded-lg" style={{ lineHeight: 0, alignSelf: "flex-start" }}>
                 <Image
-                  src="/logo_removed_bg.png"
+                  src="/logo_orange.png"
                   alt="Dev Earth Movers"
                   width={180}
                   height={70}

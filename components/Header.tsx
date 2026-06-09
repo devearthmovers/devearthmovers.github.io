@@ -375,14 +375,20 @@ export default function Header() {
         <nav className="hdr-nav" aria-label="Main navigation">
 
           {/* Logo */}
-          <Link href="/" aria-label="Dev Earth Movers – Home" style={{ flexShrink: 0, lineHeight: 0 }}>
-            <Image
-              src="/logo_removed_bg.png"
+          <Link href="/" aria-label="Dev Earth Movers – Home" className="relative flex-shrink-0 flex items-center" style={{ width: '140px', height: '66px' }}>
+            <img
+              src="/logo_orange.png"
               alt="Dev Earth Movers"
-              width={260}
-              height={90}
-              className="h-16 md:h-[76px] w-auto object-contain origin-left"
-              priority
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: '0',
+                transform: 'translateY(-50%)',
+                width: '90px',
+                height: '90px',
+                maxWidth: 'none',
+                objectFit: 'contain'
+              }}
             />
           </Link>
 

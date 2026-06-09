@@ -71,9 +71,8 @@ export default function Home() {
   ];
 
   const team = [
-    { img: "/team_member_1.png", name: "Rajesh Kumar", role: "Founder & Director",  bio: "18 years of expertise in excavation management, site preparation, and foundation engineering across Delhi NCR." },
-    { img: "/team_member_2.png", name: "Sneha Sharma", role: "Engineering Lead",    bio: "Specialist in civil site design, structural levelling, and local government compliance standards." },
-    { img: "/team_member_3.png", name: "Vikram Singh", role: "Fleet Operations",    bio: "Manages fleet logistics, safety certifications, and operator scheduling for every active project." },
+    { img: "/Rohit_Founder.jpeg", imgPosition: "50% 50%", name: "Rohit Dev", role: "Founder & Director",  bio: "18 years of expertise in excavation management, site preparation, and foundation engineering across Delhi NCR." },
+    { img: "/Ritik_Engineer.jpeg", imgPosition: "50% 20%", name: "Ritik Dev", role: "Engineering Lead",    bio: "Specialist in civil site design, structural levelling, and local government compliance standards." },
   ];
 
   const tickers = ["Earth Excavation", "Site Leveling", "Trenching & Backfill", "JCB Hire", "Road Preparation", "Excavator Rental", "Equipment Logistics", "Site Development", "Piling Services", "Barricading Work", "Dewatering Services"];
@@ -321,24 +320,39 @@ export default function Home() {
               <h2 className="fd font-black text-white text-4xl sm:text-5xl leading-none">THE TEAM</h2>
             </div>
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {team.map((m) => (
+            <div className="grid grid-cols-1 gap-8 lg:gap-12">
+              {team.map((m, i) => (
                 <div key={m.name}
-                  className="group relative bg-[#0a0a0a] border border-white/[0.05] rounded-2xl overflow-hidden hover:border-orange-500/30 transition-colors duration-300">
-                  {/* Photo */}
-                  <div className="relative h-64 overflow-hidden bg-white/[0.02]">
+                  className="group bg-[#0a0a0a] border border-white/[0.05] rounded-3xl overflow-hidden hover:border-orange-500/30 transition-colors duration-300 grid grid-cols-1 md:grid-cols-3">
+                  
+                  {/* Photo Side (1 column) */}
+                  <div className="relative h-80 md:h-auto min-h-[350px] md:col-span-1 overflow-hidden bg-white/[0.02]">
                     <Image src={m.img} alt={m.name} fill
-                      className="object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent" />
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      style={{ objectPosition: m.imgPosition }}
+                      sizes="(max-width: 768px) 100vw, 33vw" />
+                    {/* Subtle gradient overlay to blend edges */}
+                    <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent opacity-80 md:opacity-60" />
                   </div>
-                  {/* Info */}
-                  <div className="relative p-6 -mt-16 z-10">
-                    <span className="fd text-[10px] font-black tracking-[0.14em] uppercase text-orange-500 bg-orange-500/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-orange-500/20 inline-block mb-3">
-                      {m.role}
-                    </span>
-                    <h3 className="fd font-black text-white text-2xl mb-2">{m.name}</h3>
-                    <p className="text-white/40 text-sm leading-relaxed">{m.bio}</p>
+                  
+                  {/* Details Side (2 columns) */}
+                  <div className="relative p-8 md:p-12 lg:p-16 flex flex-col justify-center overflow-hidden md:col-span-2">
+                    {/* Watermark Number */}
+                    <div className="pointer-events-none absolute -bottom-4 -right-4 md:top-4 md:right-4 text-[#111111] group-hover:text-white/[0.03] transition-colors duration-500 fd font-black leading-none"
+                      style={{ fontSize: "clamp(8rem, 15vw, 15rem)" }}>
+                      0{i + 1}
+                    </div>
+
+                    <div className="relative z-10">
+                      <span className="fd text-[10px] sm:text-xs font-black tracking-[0.2em] uppercase text-orange-500 mb-4 block">
+                        {m.role}
+                      </span>
+                      <h3 className="fd font-black text-white text-4xl sm:text-5xl mb-6">{m.name}</h3>
+                      <div className="w-12 h-1 bg-orange-600 mb-6" />
+                      <p className="text-white/40 text-sm sm:text-base leading-relaxed max-w-2xl">
+                        {m.bio}
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))}

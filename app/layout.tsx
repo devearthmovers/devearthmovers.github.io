@@ -8,9 +8,9 @@ export const metadata: Metadata = {
   title: "Dev Earth Movers",
   description: "Moving Earth. Building Future.",
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: "/Tab_icon.png",
+    shortcut: "/Tab_icon.png",
+    apple: "/Tab_icon.png",
   },
 };
 
