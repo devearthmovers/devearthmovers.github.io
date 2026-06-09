@@ -99,10 +99,15 @@ export default function Header() {
         .hdr-shell {
           position: sticky;
           top: 0;
-          z-index: 50;
+          z-index: 110;
           background: var(--surface-mid);
           border-bottom: 1px solid var(--surface-border);
           transition: background 0.35s ease, box-shadow 0.35s ease;
+        }
+        .hdr-shell.menu-open {
+          position: fixed;
+          top: var(--menu-top, 0px);
+          width: 100%;
         }
         .hdr-shell.scrolled {
           background: rgba(255, 255, 255, 0.92);
@@ -193,13 +198,17 @@ export default function Header() {
           display: block;
           height: 1.5px;
           background: #27272a;
-          transition: background 0.2s, width 0.2s;
+          transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), opacity 0.3s, background 0.2s, width 0.2s;
         }
-        .hdr-burger span:nth-child(1) { width: 100%; }
+        .hdr-burger span:nth-child(1) { width: 100%; transform-origin: center; }
         .hdr-burger span:nth-child(2) { width: 60%; background: var(--accent); }
-        .hdr-burger span:nth-child(3) { width: 80%; }
+        .hdr-burger span:nth-child(3) { width: 80%; transform-origin: center; }
         .hdr-burger:hover span { background: #000000; }
         .hdr-burger:hover span:nth-child(2) { width: 100%; background: var(--accent); }
+        
+        .hdr-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); width: 100%; background: #27272a; }
+        .hdr-burger.open span:nth-child(2) { opacity: 0; width: 0; }
+        .hdr-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); width: 100%; background: #27272a; }
 
         /* ── Mobile panel ── */
         .mob-backdrop {
@@ -231,42 +240,13 @@ export default function Header() {
           transform: translateX(100%);
           visibility: hidden;
           transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 0.38s;
+          padding-top: 76px; /* Matches hdr-nav height on mobile */
         }
         .mob-panel.open {
           transform: translateX(0);
           visibility: visible;
           transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 0s;
         }
-
-        .mob-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0 20px;
-          height: 64px;
-          border-bottom: 1px solid var(--surface-border);
-        }
-        .mob-header-logo {
-          opacity: 0;
-          transform: translateX(-10px);
-          transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.4,0,0.2,1);
-        }
-        .mob-panel.open .mob-header-logo {
-          opacity: 1;
-          transform: translateX(0);
-        }
-        .mob-close {
-          width: 36px; height: 36px;
-          display: flex; align-items: center; justify-content: center;
-          border: 1px solid rgba(0, 0, 0, 0.08);
-          border-radius: 50%;
-          color: #71717a;
-          background: none;
-          cursor: pointer;
-          transition: border-color 0.2s, color 0.2s;
-          flex-shrink: 0;
-        }
-        .mob-close:hover { border-color: var(--accent); color: #18181b; }
 
         .mob-nav {
           flex: 1;
@@ -387,7 +367,11 @@ export default function Header() {
       </div>
 
       {/* ── Main Header ── */}
-      <header className={`hdr-shell${scrolled ? " scrolled" : ""}`}>
+      {mobileMenuOpen && <div style={{ height: 76 }} className="lg:hidden" />}
+      <header 
+        className={`hdr-shell${scrolled ? " scrolled" : ""}${mobileMenuOpen ? " menu-open" : ""}`}
+        style={mobileMenuOpen ? { '--menu-top': scrolled ? '0px' : `${topbarHeight}px` } as any : undefined}
+      >
         <nav className="hdr-nav" aria-label="Main navigation">
 
           {/* Logo */}
@@ -423,9 +407,9 @@ export default function Header() {
 
             <button
               type="button"
-              className="hdr-burger lg:hidden"
-              onClick={() => setMobileMenuOpen(true)}
-              aria-label="Open navigation menu"
+              className={`hdr-burger lg:hidden ${mobileMenuOpen ? 'open' : ''}`}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             >
               <span />
               <span />
@@ -459,29 +443,6 @@ export default function Header() {
           aria-label="Navigation"
           onTouchMove={(e) => e.preventDefault()}
         >
-
-          {/* Panel top */}
-          <div className="mob-header">
-            <Link href="/" className="mob-header-logo" onClick={() => setMobileMenuOpen(false)} style={{ lineHeight: 0 }}>
-              <Image
-                src="/logo_removed_bg.png"
-                alt="Dev Earth Movers"
-                width={200}
-                height={70}
-                className="h-12 w-auto object-contain origin-left"
-              />
-            </Link>
-              <button
-                type="button"
-                className="mob-close"
-                onClick={() => setMobileMenuOpen(false)}
-                aria-label="Close menu"
-              >
-                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
 
             {/* Nav items */}
             <nav className="mob-nav">
