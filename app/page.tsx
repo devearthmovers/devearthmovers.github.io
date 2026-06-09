@@ -46,6 +46,9 @@ export default function Home() {
     { img: "/service_road.png",       n: "05", title: "Road Construction",   desc: "Sub-base prep, aggregate spreading, and precision grading for commercial roadways." },
     { img: "/service_equipment.png",  n: "06", title: "Equipment Logistics", desc: "Transport, operators, safety checks, and full support for every machine on site." },
     { img: "/service_demolition.png", n: "07", title: "Building Demolition", desc: "Safe, controlled structural demolition with complete site clearance and debris removal." },
+    { img: "/service_piling.png",     n: "08", title: "Piling Services",     desc: "Heavy-duty foundation piling, sheet piling, and structural support for deep foundations." },
+    { img: "/service_barricading.png",n: "09", title: "Barricading Work",    desc: "Secure, heavy metal barricading and site fencing for active construction safety." },
+    { img: "/service_dewatering.png", n: "10", title: "Dewatering Services", desc: "High-capacity pumping and trench water management for dry, safe excavation sites." },
   ];
 
   const pillars = [
@@ -72,7 +75,7 @@ export default function Home() {
     { img: "/team_member_3.png", name: "Vikram Singh", role: "Fleet Operations",    bio: "Manages fleet logistics, safety certifications, and operator scheduling for every active project." },
   ];
 
-  const tickers = ["Earth Excavation", "Site Leveling", "Trenching & Backfill", "JCB Hire", "Road Preparation", "Excavator Rental", "Equipment Logistics", "Site Development"];
+  const tickers = ["Earth Excavation", "Site Leveling", "Trenching & Backfill", "JCB Hire", "Road Preparation", "Excavator Rental", "Equipment Logistics", "Site Development", "Piling Services", "Barricading Work", "Dewatering Services"];
 
   const checks = [
     "Licensed & insured operators on every job",
