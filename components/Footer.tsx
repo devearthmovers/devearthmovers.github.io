@@ -21,9 +21,9 @@ export default function Footer() {
     <>
       <style>{`
         .ftr-container {
-          background: #0c0c0d; /* dark theme background */
-          border-top: 1px solid rgba(255, 255, 255, 0.08);
-          padding: 80px 24px 32px 24px;
+          background: #0a0a0a; /* dark theme background consistent with home page */
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+          padding: 80px 0 32px 0;
         }
         @media (max-width: 767px) {
           .ftr-container {
@@ -31,9 +31,12 @@ export default function Footer() {
           }
         }
         .ftr-inner {
-          max-width: 1280px;
+          max-width: 80rem; /* max-w-7xl */
           margin: 0 auto;
+          padding: 0 16px;
         }
+        @media (min-width: 640px) { .ftr-inner { padding: 0 24px; } }
+        @media (min-width: 1024px) { .ftr-inner { padding: 0 40px; } }
         .ftr-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
@@ -57,12 +60,12 @@ export default function Footer() {
           gap: 20px;
         }
         .ftr-title {
-          font-family: 'Rajdhani', sans-serif;
-          font-weight: 700;
-          font-size: 0.85rem;
-          letter-spacing: 0.12em;
+          font-family: 'Barlow Condensed', sans-serif;
+          font-weight: 900;
+          font-size: 1.15rem;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
-          color: #ffffff; /* white text */
+          color: #ffffff;
           margin: 0;
         }
         .ftr-links {
@@ -71,26 +74,26 @@ export default function Footer() {
           gap: 12px;
         }
         .ftr-link {
-          font-family: 'Rajdhani', sans-serif;
-          font-weight: 600;
-          font-size: 0.78rem;
-          letter-spacing: 0.1em;
+          font-family: 'Barlow Condensed', sans-serif;
+          font-weight: 700;
+          font-size: 0.95rem;
+          letter-spacing: 0.08em;
           text-transform: uppercase;
-          color: #a1a1aa; /* zinc-400 */
+          color: #a1a1aa;
           text-decoration: none;
           transition: color 0.2s, padding-left 0.2s;
           display: inline-block;
           align-self: flex-start;
         }
         .ftr-link:hover {
-          color: #f97316; /* accent */
+          color: #ea580c; /* text-orange-600 */
           padding-left: 4px;
         }
         .ftr-text {
-          font-family: 'Mulish', sans-serif;
-          font-size: 0.82rem;
+          font-family: 'Inter', sans-serif;
+          font-size: 0.85rem;
           font-weight: 400;
-          color: #a1a1aa; /* zinc-400 */
+          color: #a1a1aa;
           line-height: 1.6;
           margin: 0;
         }
@@ -104,7 +107,7 @@ export default function Footer() {
           transition: color 0.2s;
         }
         .ftr-social-link:hover {
-          color: #f97316;
+          color: #ea580c;
         }
         .ftr-contact-list {
           display: flex;
@@ -114,23 +117,23 @@ export default function Footer() {
         .ftr-contact-row {
           display: flex;
           gap: 12px;
-          font-family: 'Mulish', sans-serif;
-          font-size: 0.82rem;
+          font-family: 'Inter', sans-serif;
+          font-size: 0.85rem;
           color: #a1a1aa;
           line-height: 1.5;
         }
         .ftr-contact-row svg {
-          color: #f97316;
+          color: #ea580c;
           flex-shrink: 0;
           margin-top: 2px;
         }
         .ftr-contact-row a {
-          color: #e4e4e7; /* zinc-200 */
+          color: #e4e4e7;
           text-decoration: none;
           transition: color 0.2s;
         }
         .ftr-contact-row a:hover {
-          color: #f97316;
+          color: #ea580c;
         }
         .ftr-bottom {
           border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -144,9 +147,9 @@ export default function Footer() {
           }
         }
         .ftr-copyright {
-          font-family: 'Mulish', sans-serif;
-          font-size: 0.72rem;
-          color: #71717a; /* zinc-500 */
+          font-family: 'Inter', sans-serif;
+          font-size: 0.75rem;
+          color: #71717a;
           text-align: center;
           margin: 0;
         }
@@ -163,7 +166,7 @@ export default function Footer() {
             <div className="ftr-col">
               <Link href="/" className="inline-block bg-white p-2.5 rounded-lg" style={{ lineHeight: 0, alignSelf: "flex-start" }}>
                 <Image
-                  src="/logo.png"
+                  src="/logo_removed_bg.png"
                   alt="Dev Earth Movers"
                   width={180}
                   height={70}

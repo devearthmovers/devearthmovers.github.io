@@ -73,7 +73,7 @@ export default function Header() {
         .hdr-topbar {
           background: var(--surface);
           border-bottom: 1px solid var(--topbar-border);
-          font-family: 'Mulish', sans-serif;
+          font-family: 'Inter', sans-serif;
           font-size: 0.72rem;
           font-weight: 500;
           letter-spacing: 0.02em;
@@ -130,10 +130,10 @@ export default function Header() {
           max-width: 1280px;
           margin: 0 auto;
           padding: 0 32px;
-          height: 76px;
+          height: 96px;
           gap: 32px;
         }
-        @media (max-width: 1023px) { .hdr-nav { height: 64px; padding: 0 20px; } }
+        @media (max-width: 1023px) { .hdr-nav { height: 76px; padding: 0 20px; } }
 
         /* ── Desktop nav links ── */
         @media (min-width: 1024px) {
@@ -144,9 +144,9 @@ export default function Header() {
           }
         }
         .hdr-link {
-          font-family: 'Rajdhani', sans-serif;
-          font-weight: 600;
-          font-size: 0.78rem;
+          font-family: 'Barlow Condensed', sans-serif;
+          font-weight: 700;
+          font-size: 0.9rem;
           letter-spacing: 0.12em;
           text-transform: uppercase;
           color: #71717a;
@@ -171,35 +171,6 @@ export default function Header() {
         }
         .hdr-link:hover::after,
         .hdr-link.active::after { left: 0; right: 0; }
-
-        /* ── CTA Button ── */
-        .hdr-cta {
-          font-family: 'Rajdhani', sans-serif;
-          font-weight: 700;
-          font-size: 0.78rem;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: #fff;
-          background: var(--accent);
-          border: none;
-          padding: 11px 26px;
-          position: relative;
-          overflow: hidden;
-          clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
-          transition: background 0.25s;
-          cursor: pointer;
-          white-space: nowrap;
-        }
-        .hdr-cta::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: rgba(255,255,255,0.12);
-          transform: translateX(-110%) skewX(-15deg);
-          transition: transform 0.4s ease;
-        }
-        .hdr-cta:hover { background: var(--accent-dark); }
-        .hdr-cta:hover::before { transform: translateX(110%) skewX(-15deg); }
 
         /* ── Hamburger ── */
         .hdr-burger {
@@ -238,25 +209,33 @@ export default function Header() {
           background: rgba(0,0,0,0.65);
           backdrop-filter: blur(4px);
           -webkit-backdrop-filter: blur(4px);
-          animation: fadeInBd 0.3s ease forwards;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.3s ease, visibility 0s 0.3s;
         }
-        @keyframes fadeInBd {
-          from { opacity: 0; } to { opacity: 1; }
+        .mob-backdrop.open {
+          opacity: 1;
+          visibility: visible;
+          transition: opacity 0.3s ease, visibility 0s 0s;
         }
         .mob-panel {
           position: fixed;
           right: 0; bottom: 0;
-          width: min(420px, 100vw);
+          width: 60vw;
+          max-width: 320px;
           background: #ffffff;
           display: flex;
           flex-direction: column;
-          animation: slidePanel 0.38s cubic-bezier(0.4, 0, 0.2, 1) forwards;
           z-index: 101;
           border-left: 1px solid var(--surface-border);
+          transform: translateX(100%);
+          visibility: hidden;
+          transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 0.38s;
         }
-        @keyframes slidePanel {
-          from { transform: translateX(100%); }
-          to  { transform: translateX(0); }
+        .mob-panel.open {
+          transform: translateX(0);
+          visibility: visible;
+          transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 0s;
         }
 
         .mob-header {
@@ -266,6 +245,15 @@ export default function Header() {
           padding: 0 20px;
           height: 64px;
           border-bottom: 1px solid var(--surface-border);
+        }
+        .mob-header-logo {
+          opacity: 0;
+          transform: translateX(-10px);
+          transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .mob-panel.open .mob-header-logo {
+          opacity: 1;
+          transform: translateX(0);
         }
         .mob-close {
           width: 36px; height: 36px;
@@ -295,17 +283,17 @@ export default function Header() {
           padding: 14px 0;
           border-bottom: 1px solid rgba(0, 0, 0, 0.04);
           opacity: 0;
-          animation: fadeUp 0.4s cubic-bezier(0.4,0,0.2,1) both;
-          transition: padding-left 0.2s ease;
+          transform: translateY(18px);
+          transition: padding-left 0.2s ease, opacity 0.4s cubic-bezier(0.4,0,0.2,1) var(--delay, 0s), transform 0.4s cubic-bezier(0.4,0,0.2,1) var(--delay, 0s);
+        }
+        .mob-panel.open .mob-nav-item {
+          opacity: 1;
+          transform: translateY(0);
         }
         .mob-nav-item:hover { padding-left: 8px; }
         .mob-nav-item:last-child { border-bottom: none; }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(18px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
         .mob-idx {
-          font-family: 'Mulish', sans-serif;
+          font-family: 'Inter', sans-serif;
           font-size: 0.65rem;
           font-weight: 600;
           color: var(--accent);
@@ -314,9 +302,9 @@ export default function Header() {
           margin-top: 2px;
         }
         .mob-label {
-          font-family: 'Rajdhani', sans-serif;
-          font-weight: 700;
-          font-size: clamp(1.6rem, 5vw, 2rem);
+          font-family: 'Barlow Condensed', sans-serif;
+          font-weight: 900;
+          font-size: clamp(1.8rem, 6vw, 2.4rem);
           line-height: 1;
           color: #52525b;
           transition: color 0.2s;
@@ -331,23 +319,14 @@ export default function Header() {
           display: flex;
           flex-direction: column;
           gap: 16px;
-          animation: fadeUp 0.4s 0.35s cubic-bezier(0.4,0,0.2,1) both;
+          opacity: 0;
+          transform: translateY(18px);
+          transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1) var(--delay, 0s), transform 0.4s cubic-bezier(0.4,0,0.2,1) var(--delay, 0s);
         }
-        .mob-cta {
-          display: block;
-          font-family: 'Rajdhani', sans-serif;
-          font-weight: 700;
-          font-size: 0.85rem;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: #fff;
-          background: var(--accent);
-          padding: 14px 24px;
-          text-align: center;
-          border-radius: 3px;
-          transition: background 0.2s;
+        .mob-panel.open .mob-footer {
+          opacity: 1;
+          transform: translateY(0);
         }
-        .mob-cta:hover { background: var(--accent-dark); }
         .mob-contacts {
           display: flex;
           flex-direction: column;
@@ -357,8 +336,8 @@ export default function Header() {
           display: flex;
           align-items: center;
           gap: 8px;
-          font-family: 'Mulish', sans-serif;
-          font-size: 0.72rem;
+          font-family: 'Inter', sans-serif;
+          font-size: 0.75rem;
           color: #71717a;
         }
         .mob-contact-row svg { color: var(--accent); flex-shrink: 0; }
@@ -414,11 +393,11 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" aria-label="Dev Earth Movers – Home" style={{ flexShrink: 0, lineHeight: 0 }}>
             <Image
-              src="/logo.png"
+              src="/logo_removed_bg.png"
               alt="Dev Earth Movers"
-              width={220}
-              height={80}
-              className="h-14 md:h-[60px] w-auto object-contain"
+              width={260}
+              height={90}
+              className="h-16 md:h-[76px] w-auto object-contain origin-left"
               priority
             />
           </Link>
@@ -438,8 +417,8 @@ export default function Header() {
 
           {/* CTA + burger */}
           <div style={{ display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
-            <Link href="/contact" className="hdr-cta hidden lg:block">
-              Get a Quote &rarr;
+            <Link href="/contact" className="hidden lg:inline-flex items-center justify-center font-black tracking-widest text-xs bg-orange-600 hover:bg-orange-500 text-white px-6 py-3 rounded-full transition-colors gap-2 uppercase" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+              Get a Quote <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" className="flex-shrink-0"><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7-7 7M3 12h18" /></svg>
             </Link>
 
             <button
@@ -457,42 +436,41 @@ export default function Header() {
       </header>
 
       {/* ── Mobile Menu ── */}
-      {mobileMenuOpen && (
-        <>
-          <div
-            className="mob-backdrop lg:hidden"
-            style={{
-              top: scrolled ? "0px" : `${topbarHeight}px`,
-              touchAction: "none"
-            }}
-            onClick={() => setMobileMenuOpen(false)}
-            aria-hidden="true"
-            onTouchMove={(e) => e.preventDefault()}
-          />
+      <>
+        <div
+          className={`mob-backdrop lg:hidden ${mobileMenuOpen ? 'open' : ''}`}
+          style={{
+            top: scrolled ? "0px" : `${topbarHeight}px`,
+            touchAction: "none"
+          }}
+          onClick={() => setMobileMenuOpen(false)}
+          aria-hidden="true"
+          onTouchMove={(e) => e.preventDefault()}
+        />
 
-          <div
-            className="mob-panel lg:hidden"
-            style={{
-              top: scrolled ? "0px" : `${topbarHeight}px`,
-              touchAction: "none"
-            }}
-            role="dialog"
-            aria-modal="true"
-            aria-label="Navigation"
-            onTouchMove={(e) => e.preventDefault()}
-          >
+        <div
+          className={`mob-panel lg:hidden ${mobileMenuOpen ? 'open' : ''}`}
+          style={{
+            top: scrolled ? "0px" : `${topbarHeight}px`,
+            touchAction: "none"
+          }}
+          role="dialog"
+          aria-modal={mobileMenuOpen}
+          aria-label="Navigation"
+          onTouchMove={(e) => e.preventDefault()}
+        >
 
-            {/* Panel top */}
-            <div className="mob-header">
-              <Link href="/" onClick={() => setMobileMenuOpen(false)} style={{ lineHeight: 0 }}>
-                <Image
-                  src="/logo.png"
-                  alt="Dev Earth Movers"
-                  width={170}
-                  height={56}
-                  className="h-11 w-auto object-contain"
-                />
-              </Link>
+          {/* Panel top */}
+          <div className="mob-header">
+            <Link href="/" className="mob-header-logo" onClick={() => setMobileMenuOpen(false)} style={{ lineHeight: 0 }}>
+              <Image
+                src="/logo_removed_bg.png"
+                alt="Dev Earth Movers"
+                width={200}
+                height={70}
+                className="h-12 w-auto object-contain origin-left"
+              />
+            </Link>
               <button
                 type="button"
                 className="mob-close"
@@ -513,7 +491,7 @@ export default function Header() {
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`mob-nav-item${pathname === item.href ? " active" : ""}`}
-                  style={{ animationDelay: `${0.06 + i * 0.055}s` }}
+                  style={{ '--delay': mobileMenuOpen ? `${0.06 + i * 0.055}s` : '0s' } as any}
                 >
                   <span className="mob-idx">0{i + 1}</span>
                   <span className="mob-label">{item.name}</span>
@@ -522,18 +500,18 @@ export default function Header() {
             </nav>
 
             {/* Panel footer */}
-            <div className="mob-footer">
+            <div className="mob-footer" style={{ '--delay': mobileMenuOpen ? '0.35s' : '0s' } as any}>
               <Link
                 href="/contact"
-                className="mob-cta"
+                className="inline-flex items-center justify-center font-black tracking-widest text-xs bg-orange-600 hover:bg-orange-500 text-white px-6 py-4 rounded-full transition-colors gap-2 uppercase text-center w-full"
+                style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Get a Free Quote &rarr;
+                Get a Free Quote <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" className="flex-shrink-0"><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7-7 7M3 12h18" /></svg>
               </Link>
             </div>
-          </div>
-        </>
-      )}
+        </div>
+      </>
     </>
   );
 }

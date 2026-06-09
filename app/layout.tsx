@@ -23,10 +23,10 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className="overflow-x-hidden"
+      className="overflow-x-clip"
     >
       <body
-        className="min-h-screen flex flex-col font-sans bg-white text-zinc-900 w-full max-w-[100vw] overflow-x-hidden"
+        className="min-h-screen flex flex-col font-sans bg-white text-zinc-900 w-full max-w-[100vw] overflow-x-clip"
         suppressHydrationWarning
       >
         <Header />
