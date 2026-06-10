@@ -117,7 +117,7 @@ export default function AboutPage() {
                   PROVEN BY<br />
                   RESULTS.
                 </h1>
-                <p className="text-white/45 text-sm sm:text-base leading-relaxed mb-8 max-w-sm">
+                <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-8 max-w-sm">
                   Over 15 years of precision earthmoving, excavation, and site development across Delhi NCR — built on one principle: every cubic metre moved right.
                 </p>
                 <div className="flex flex-wrap gap-3">
@@ -141,7 +141,7 @@ export default function AboutPage() {
                       style={{ fontSize: "clamp(2.4rem, 6vw, 3.5rem)" }}>
                       {n}
                     </div>
-                    <div className={`text-[10px] tracking-[0.14em] uppercase ${i === 0 ? "text-white/75" : "text-white/30"}`}
+                    <div className={`text-[10px] tracking-[0.14em] uppercase ${i === 0 ? "text-white/80" : "text-white/60"}`}
                       style={{ fontFamily: "Inter, sans-serif" }}>
                       {l}
                     </div>
@@ -248,7 +248,7 @@ export default function AboutPage() {
 
                     {/* Desc side */}
                     <div className={`${i % 2 !== 0 ? "lg:order-1" : ""}`}>
-                      <p className="text-white/40 text-sm leading-relaxed">{t.desc}</p>
+                      <p className="text-white/70 text-sm leading-relaxed">{t.desc}</p>
                     </div>
 
                   </div>
@@ -328,10 +328,10 @@ export default function AboutPage() {
                       </span>
                       <h3 className="fd font-black text-white text-4xl sm:text-5xl mb-4">{m.name}</h3>
                       <div className="w-12 h-1 bg-orange-600 mb-5" />
-                      <p className="text-white/40 text-sm sm:text-base leading-relaxed max-w-2xl mb-4">
+                      <p className="text-white/75 text-sm sm:text-base leading-relaxed max-w-2xl mb-4">
                         {m.bio}
                       </p>
-                      <p className="text-white/25 text-sm leading-relaxed max-w-2xl">
+                      <p className="text-white/60 text-sm leading-relaxed max-w-2xl">
                         {m.detail}
                       </p>
                     </div>
@@ -354,8 +354,8 @@ export default function AboutPage() {
                   style={{ fontSize: "clamp(5rem, 16vw, 11rem)" }}>
                   250<span className="text-orange-500">+</span>
                 </div>
-                <p className="fd font-black text-white/20 text-2xl sm:text-3xl mb-6 tracking-wide">PROJECTS DELIVERED</p>
-                <p className="text-white/40 text-sm leading-relaxed max-w-sm">
+                <p className="fd font-black text-white/40 text-2xl sm:text-3xl mb-6 tracking-wide">PROJECTS DELIVERED</p>
+                <p className="text-white/70 text-sm leading-relaxed max-w-sm">
                   From single-plot foundation digs to multi-phase infrastructure contracts — every one completed on time and to spec.
                 </p>
               </div>
@@ -370,7 +370,7 @@ export default function AboutPage() {
                 ].map(([label, val]) => (
                   <div key={label}
                     className="flex items-center justify-between bg-[#111111] border border-white/[0.05] rounded-2xl px-6 py-5 hover:border-orange-600/20 transition-colors">
-                    <span className="text-white/50 text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{label}</span>
+                    <span className="text-white/75 text-sm" style={{ fontFamily: "Inter, sans-serif" }}>{label}</span>
                     <span className="fd font-black text-white text-2xl">{val}</span>
                   </div>
                 ))}
@@ -395,7 +395,7 @@ export default function AboutPage() {
                   READY TO START YOUR<br />
                   <span className="text-orange-500">NEXT PROJECT?</span>
                 </h2>
-                <p className="text-white/35 text-sm leading-relaxed max-w-sm">
+                <p className="text-white/70 text-sm leading-relaxed max-w-sm">
                   Free site quote, equipment hire, or custom consulting. We respond within 2 business hours.
                 </p>
               </div>

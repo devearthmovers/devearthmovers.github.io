@@ -109,7 +109,7 @@ export default function Home() {
                   FUTURES.
                 </h1>
 
-                <p className="text-white/45 text-sm sm:text-base leading-relaxed mb-7 max-w-sm">
+                <p className="text-white/70 text-sm sm:text-base leading-relaxed mb-7 max-w-sm">
                   Professional earthmoving, excavation, and heavy equipment rental — engineered for precision, built for scale.
                 </p>
 
@@ -131,7 +131,7 @@ export default function Home() {
                     <div key={l}
                       className={`flex-1 text-center ${i > 0 ? "border-l border-white/[0.08]" : ""} px-2`}>
                       <div className="fd font-black text-2xl sm:text-3xl text-white leading-none mb-0.5">{n}</div>
-                      <div className="text-white/30 text-[9px] sm:text-[10px] tracking-[0.12em] uppercase">{l}</div>
+                      <div className="text-white/60 text-[9px] sm:text-[10px] tracking-[0.12em] uppercase">{l}</div>
                     </div>
                   ))}
                 </div>
@@ -233,7 +233,7 @@ export default function Home() {
                 <Label>Core Capabilities</Label>
                 <h2 className="fd font-black text-white text-4xl sm:text-5xl leading-none">OUR SERVICES</h2>
               </div>
-              <p className="text-white/30 text-xs sm:text-sm leading-relaxed sm:text-right sm:max-w-[240px]">
+              <p className="text-white/60 text-xs sm:text-sm leading-relaxed sm:text-right sm:max-w-[240px]">
                 Commercial, residential & infrastructure solutions across Delhi NCR.
               </p>
             </div>
@@ -260,7 +260,7 @@ export default function Home() {
                     <h3 className="fd font-black text-white text-xl mb-1.5 group-hover:text-orange-500 transition-colors duration-200">
                       {s.title}
                     </h3>
-                    <p className="text-white/30 text-xs leading-relaxed mb-4">{s.desc}</p>
+                    <p className="text-zinc-400 text-xs leading-relaxed mb-4">{s.desc}</p>
                     <span className="fd text-[10px] font-black tracking-[0.15em] uppercase text-orange-600 inline-flex items-center gap-1.5">
                       LEARN MORE <ArrowIcon />
                     </span>
@@ -269,6 +269,55 @@ export default function Home() {
               ))}
             </div>
 
+          </div>
+        </section>
+
+        {/* ════════ FLEET SHOWCASE ════════ */}
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-16 sm:py-20 lg:py-24">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-10">
+            <div>
+              <Label>Heavy Equipment</Label>
+              <h2 className="fd font-black text-[#0a0a0a] text-4xl sm:text-5xl leading-none">OUR FLEET</h2>
+            </div>
+            <div className="flex flex-col items-start sm:items-end gap-2.5">
+              <p className="text-stone-400 text-xs sm:text-sm sm:text-right leading-relaxed max-w-[280px]">
+                High-performance excavators, dumpers, and piling rigs ready to deploy.
+              </p>
+              <Link href="/fleet"
+                className="fd text-xs font-black tracking-[0.15em] uppercase text-orange-600 hover:text-orange-500 inline-flex items-center gap-1.5 transition-colors">
+                VIEW ALL MACHINERY <ArrowIcon />
+              </Link>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { name: "Poclain Excavator", img: "/fleet_poclain.png", desc: "Tata Hitachi 20-Ton Excavators", cat: "Heavy Excavation" },
+              { name: "JCB Excavator", img: "/fleet_jcb.png", desc: "JCB 3DX Super Backhoes", cat: "Site Loading" },
+              { name: "Hyva Dumper", img: "/fleet_hyva.png", desc: "Tata 10-Wheeler Tipper Trucks", cat: "Material Logistics" },
+              { name: "Piling Machine", img: "/fleet_piling.png", desc: "Hydraulic Bored Piling Rigs", cat: "Deep Foundation" },
+            ].map((f) => (
+              <Link key={f.name} href="/fleet"
+                className="group block bg-white border border-stone-100 rounded-2xl overflow-hidden hover:border-orange-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-orange-50/80 transition-all duration-300">
+                <div className="relative h-48 sm:h-52 overflow-hidden bg-neutral-100">
+                  <Image src={f.img} alt={f.name} fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
+                  
+                  {/* Category chip */}
+                  <span className="absolute bottom-3 left-4 fd font-bold text-[9px] tracking-[0.18em] uppercase bg-orange-600 text-white rounded-full px-3 py-1">
+                    {f.cat}
+                  </span>
+                </div>
+                <div className="p-5">
+                  <h3 className="fd font-black text-[#0a0a0a] text-xl mb-1 group-hover:text-orange-600 transition-colors duration-200">
+                    {f.name}
+                  </h3>
+                  <p className="text-stone-400 text-xs">{f.desc}</p>
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
 
@@ -349,7 +398,7 @@ export default function Home() {
                       </span>
                       <h3 className="fd font-black text-white text-4xl sm:text-5xl mb-6">{m.name}</h3>
                       <div className="w-12 h-1 bg-orange-600 mb-6" />
-                      <p className="text-white/40 text-sm sm:text-base leading-relaxed max-w-2xl">
+                      <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-2xl">
                         {m.bio}
                       </p>
                     </div>
@@ -379,7 +428,7 @@ export default function Home() {
                   READY TO START YOUR<br />
                   <span className="text-orange-500">NEXT PROJECT?</span>
                 </h2>
-                <p className="text-white/35 text-sm leading-relaxed max-w-sm">
+                <p className="text-white/70 text-sm leading-relaxed max-w-sm">
                   Free site quote, equipment hire, or custom consulting. We respond within 2 business hours.
                 </p>
               </div>

@@ -131,7 +131,7 @@ setLoading(false);
                   LET'S BUILD<br />
                   <span className="text-orange-500 italic">TOGETHER.</span>
                 </h1>
-                <p className="text-white/45 text-sm sm:text-base leading-relaxed max-w-sm">
+                <p className="text-white/70 text-sm sm:text-base leading-relaxed max-w-sm">
                   Free site quotes, equipment hire enquiries, or project consultations — we respond within 2 business hours.
                 </p>
               </div>
@@ -139,7 +139,7 @@ setLoading(false);
                 {[["2hr", "Response Time"], ["24/7", "Site Support"], ["Delhi NCR", "Service Area"]].map(([n, l], i) => (
                   <div key={l} className={`flex-1 text-center ${i > 0 ? "border-l border-white/[0.08]" : ""} px-2`}>
                     <div className="fd font-black text-2xl sm:text-3xl text-white leading-none mb-0.5">{n}</div>
-                    <div className="text-white/30 text-[9px] sm:text-[10px] tracking-[0.12em] uppercase">{l}</div>
+                    <div className="text-white/60 text-[9px] sm:text-[10px] tracking-[0.12em] uppercase">{l}</div>
                   </div>
                 ))}
               </div>
@@ -377,7 +377,7 @@ setLoading(false);
                     NEED A QUICK<br />
                     <span className="text-orange-500">ESTIMATE?</span>
                   </h2>
-                  <p className="text-white/35 text-sm leading-relaxed max-w-sm">
+                  <p className="text-white/70 text-sm leading-relaxed max-w-sm">
                     Call us directly for urgent jobs or same-day equipment dispatch across Delhi NCR.
                   </p>
                 </div>

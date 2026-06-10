@@ -11,6 +11,7 @@ const navigation = {
   ],
   company: [
     { name: "About Us", href: "/about" },
+    { name: "Our Fleet", href: "/fleet" },
     { name: "Projects", href: "/projects" },
     { name: "Contact", href: "/contact" },
   ],
