@@ -1,3 +1,4 @@
+// Web3Forms configuration update
 "use client";
 
 import Link from "next/link";
