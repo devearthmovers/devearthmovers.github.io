@@ -176,7 +176,7 @@ export default function Footer() {
                 />
               </Link>
               <p className="ftr-text">
-                Moving Earth. Building Future. Professional earthmoving, excavation, and site development services.
+                Moving Earth. Building Futures. Professional earthmoving, excavation, and site development services.
               </p>
               <div className="ftr-socials">
                 <a href="#" className="ftr-social-link" aria-label="Facebook">
