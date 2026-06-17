@@ -58,7 +58,7 @@ const InfoCard = ({
 );
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", phone: "", email: "", service: "", message: "" });
+  const [form, setForm] = useState({ name: "", phone: "", email: "", service: "" });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -76,7 +76,6 @@ export default function ContactPage() {
   phone: form.phone,
   email: form.email,
   service: form.service,
-  message: form.message,
 };
 
 const response = await fetch(
@@ -282,14 +281,7 @@ setLoading(false);
                           </div>
                         </div>
 
-                        <div className="flex flex-col gap-1.5">
-                          <label className="fd font-black text-stone-400 text-[10px] tracking-[0.15em] uppercase">
-                            Project Details <span className="text-orange-600">*</span>
-                          </label>
-                          <textarea name="message" required rows={5} value={form.message} onChange={handleChange}
-                            placeholder="Describe your site, scope of work, location, and any timeline requirements…"
-                            className={`${inputBase} resize-none`} />
-                        </div>
+
 
                         <p className="text-stone-400 text-[10px] leading-relaxed">
                           By submitting this form you agree to be contacted by Dev Earth Movers regarding your enquiry. We never share your details with third parties.
@@ -315,7 +307,7 @@ setLoading(false);
                       <p className="text-stone-400 text-sm leading-relaxed max-w-xs mb-8">
                         Our team typically responds within 2 business hours. Check your inbox — or give us a call directly.
                       </p>
-                      <button onClick={() => { setSubmitted(false); setForm({ name: "", phone: "", email: "", service: "", message: "" }); }}
+                      <button onClick={() => { setSubmitted(false); setForm({ name: "", phone: "", email: "", service: "" }); }}
                         className="fd font-black tracking-widest text-xs ring-1 ring-inset ring-stone-200 hover:ring-orange-500 hover:text-orange-500 text-stone-700 px-6 py-3 rounded-full inline-flex items-center gap-2 transition-colors">
                         SEND ANOTHER
                       </button>
