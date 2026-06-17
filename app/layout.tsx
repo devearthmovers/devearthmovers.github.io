@@ -6,8 +6,20 @@ import Footer from "@/components/Footer";
 import FloatingContact from "@/components/FloatingContact";
 
 export const metadata: Metadata = {
-  title: "Dev Earth Movers",
-  description: "Moving Earth. Building Future.",
+  title: {
+    default: "Dev Earth Movers | Excavation & Demolition Contractors in Delhi NCR",
+    template: "%s | Dev Earth Movers"
+  },
+  description: "Professional excavation, demolition, trenching, and JCB hire services in Delhi, Noida, Gurugram, and NCR. Reliable earth moving contractors.",
+  keywords: ["excavation", "demolition", "construction", "JCB hire", "earth movers", "Delhi", "NCR", "Noida", "Gurugram", "trenching", "site clearing"],
+  openGraph: {
+    title: "Dev Earth Movers | Excavation & Demolition Contractors",
+    description: "Professional excavation, demolition, trenching, and JCB hire services in Delhi NCR.",
+    url: "https://devearthmovers.in",
+    siteName: "Dev Earth Movers",
+    locale: "en_IN",
+    type: "website",
+  },
   icons: {
     icon: "/Tab_icon.png",
     shortcut: "/Tab_icon.png",
